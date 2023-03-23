@@ -17,7 +17,7 @@ const { body } = meriyah.parseScript(strToAnalyze, {
 
 const identifiersName = new Set();
 
-walk(body, {
+walk(body as any, {
     enter(node, parent) {
         if (node.type === "Identifier") {
             identifiersName.add(node.name);
