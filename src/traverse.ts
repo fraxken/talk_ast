@@ -9,23 +9,23 @@ import { walk } from "estree-walker";
 import * as meriyah from "meriyah";
 
 const strToAnalyze = fs.readFileSync(
-    path.join(__dirname, "..", "codes", "exemple.js"), "utf-8");
+  path.join(__dirname, "..", "codes", "exemple.js"), "utf-8");
 
 const { body } = meriyah.parseScript(strToAnalyze, {
-    next: true, loc: true, raw: true, module: false
+  next: true, loc: true, raw: true, module: false
 });
 
 const identifiersName = new Set();
 
 walk(body as any, {
-    enter(node, parent) {
-        if (node.type === "Identifier") {
-            identifiersName.add(node.name);
-        }
-        // console.log(node);
-        // console.log(parent);
-        // console.log("--------------");
+  enter(node, parent) {
+    if (node.type === "Identifier") {
+      identifiersName.add(node.name);
     }
+    // console.log(node);
+    // console.log(parent);
+    // console.log("--------------");
+  }
 });
 
 console.log(identifiersName);
